@@ -1,43 +1,43 @@
 /*
-实现一个简单的回调函数，来说明回调的基本原理；
+ʵ��һ���򵥵Ļص���������˵���ص��Ļ���ԭ����
 
-通常情况下函数的调用顺序是：用户调用操作系统的函数，上层函数调用下层的函数；
-而所谓的回调是指由操作系统调用用户编写的函数，或者由底层函数调用上层的函数；
+ͨ������º����ĵ���˳���ǣ��û����ò���ϵͳ�ĺ������ϲ㺯�������²�ĺ�����
+����ν�Ļص���ָ�ɲ���ϵͳ�����û���д�ĺ����������ɵײ㺯�������ϲ�ĺ�����
 
-由于操作系统的代码在用户代码之前就已经编写编译完成，因此由操作系统发起的回调一般
-都必须通过将用户编写的函数的函数指针传递给操作系统，再由操作系统实现回调。 
+���ڲ���ϵͳ�Ĵ������û�����֮ǰ���Ѿ���д������ɣ�����ɲ���ϵͳ����Ļص�һ��
+������ͨ�����û���д�ĺ����ĺ���ָ�봫�ݸ�����ϵͳ�����ɲ���ϵͳʵ�ֻص��� 
 */
 
 
 #include <stdio.h>
 
-/*用户的函数1------这是回调函数1*/ 
+/*�û��ĺ���1------���ǻص�����1*/ 
 void printWelcome(int len)   
 {
-       printf("欢迎欢迎 -- %d\n", len);
+       printf("��ӭ��ӭ -- %d\n", len);
 }
 
-/*用户函数2-------这是回调函数2*/ 
+/*�û�����2-------���ǻص�����2*/ 
 void printGoodbye(int len)
 {
-       printf("送客送客 -- %d\n", len);
+       printf("�Ϳ��Ϳ� -- %d\n", len);
 }
 
-/*操作系统实现回调操作的函数，这个函数的角色就是API*/ 
+/*����ϵͳʵ�ֻص������ĺ���*/ 
 void callback(int times, void (* print)(int))
 {
        int i;
        for (i = 0; i < times; ++i)
        {
-              print(i);  //在这个位置实现回调，即操作系统回去执行用户编写的函数； 
+              print(i);  //�����λ��ʵ�ֻص���������ϵͳ��ȥִ���û���д�ĺ����� 
        }
-       printf("/n我不知道你是迎客还是送客!\n\n");
+       printf("/n�Ҳ�֪������ӭ�ͻ����Ϳ�!\n\n");
 }
 
-/*用户的主函数*/
+/*�û���������*/
 int main(void)
 {
-       callback(10, printWelcome);  //这一步是将用户的函数指针传递给操作系统函数callback，然后由操作系统实现回调；简单讲就是调用API函数；
-       callback(10, printGoodbye);  //同上； 
+       callback(10, printWelcome);  //��һ���ǽ��û��ĺ���ָ�봫�ݸ�����ϵͳ����callback��Ȼ���ɲ���ϵͳʵ�ֻص��� 
+       callback(10, printGoodbye);  //ͬ�ϣ� 
        printWelcome(5);
 }
