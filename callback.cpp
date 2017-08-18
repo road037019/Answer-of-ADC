@@ -23,7 +23,7 @@ void printGoodbye(int len)
        printf("送客送客 -- %d\n", len);
 }
 
-/*操作系统实现回调操作的函数*/ 
+/*操作系统实现回调操作的函数，即API函数*/ 
 void callback(int times, void (* print)(int))
 {
        int i;
@@ -37,7 +37,9 @@ void callback(int times, void (* print)(int))
 /*用户的主函数*/
 int main(void)
 {
-       callback(10, printWelcome);  //这一步是将用户的函数指针传递给操作系统函数callback，然后由操作系统实现回调； 
+       callback(10, printWelcome);  //这一步是将用户的函数指针传递给操作系统函数callback，然后由操作系统实现回调，即调用API函数； 
        callback(10, printGoodbye);  //同上； 
        printWelcome(5);
 }
+
+/*callback函数为B层，main函数和print*函数为A层，A层调用了B层的回调函数callmeback，而B层的回调函数调用了A层的实现函数print*。说白了B层就是一个接口。*/ 
