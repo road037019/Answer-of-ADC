@@ -43,7 +43,7 @@ int MaxSubSum2(int a[], int size)
 }
 
 int main(){
-	int a[5]={2,-1,2,1,-9} ;
+	int a[5]={-2,1,2,-1,9};
 	int result;
 	result=MaxSubSum2(a,5);
 	printf("result=%d\n",result);
@@ -62,4 +62,7 @@ int main(){
 {-2,1,2,1,-9}
 {-2,-1,2,1,-9}
 {2,-1,2,1,-9}
+{2,-1,2,-1,9}
+{2,-1,2,-1,-9} 
+{-2,1,2,-1,9}
 */ 
